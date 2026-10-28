@@ -3,7 +3,7 @@
 <img width="1690" height="1035" alt="image" src="https://github.com/user-attachments/assets/cbb76893-e448-4555-9619-d48552cd5062" />
 
 
-A web interface for the **data-obfuscator** command-line program, which masks NONMEM-style pharmacometric datasets so they can be shared with LLMs and collaborators.
+A web interface for the **data-obfuscator** command-line program, which masks ADaM/SDTM dataset or NONMEM-style pharmacometric datasets so they can be shared with LLMs and collaborators.
 
 1. **Upload** a CSV, TSV or `.dat` file, or several related datasets at once (for example ADaM `ADSL`, `ADEX`, `ADPC`), and see the first rows in an Excel-style grid (column letters, row numbers, a formula bar, a tag on each column that says what the chosen level will do to it).
 2. **Choose** the masking level, seed, ID style, date shift window, scaling range, column renaming, per-column roles and which columns to keep. At levels 3 and 4 a **Protected columns** editor shows the list of columns that are never scaled; add your own or take names off. The **Treat as** choices in the column table only list what does something at the chosen level.
