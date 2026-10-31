@@ -1,0 +1,275 @@
+@import 'tailwindcss';
+
+/* ---------- colour tokens (light first, dark below) ---------- */
+:root {
+  --canvas: #eef1f5;
+  --surface: #ffffff;
+  --sunken: #f5f7fa;
+  --ink: #16202f;
+  --muted: #5b6778;
+  --faint: #8a95a5;
+  --line: #d8dee7;
+  --line-strong: #bcc5d2;
+  --brand: #16202f;
+  --brand-ink: #ffffff;
+  --mask: #c41e7a;
+  --mask-soft: #fbe4f1;
+  --mask-ink: #8f1458;
+  --safe: #0d7f6e;
+  --safe-soft: #dcf3ee;
+  --warn: #9a5b00;
+  --warn-soft: #fdf0d5;
+  --bad: #b3261e;
+  --bad-soft: #fbe3e1;
+  --focus: #3d5afe;
+  --grid-head: #e9edf3;
+  --grid-gutter: #f0f3f7;
+  --grid-line: #dfe4ec;
+  --console-bg: #101826;
+  --console-ink: #cdd6e4;
+}
+
+:root[data-theme='dark'] {
+  --canvas: #0d1320;
+  --surface: #151d2d;
+  --sunken: #111827;
+  --ink: #e7ecf4;
+  --muted: #9aa6b8;
+  --faint: #6f7b8f;
+  --line: #26324a;
+  --line-strong: #364563;
+  --brand: #e7ecf4;
+  --brand-ink: #101826;
+  --mask: #f06bb4;
+  --mask-soft: #3b1630;
+  --mask-ink: #f9a6d2;
+  --safe: #3ecdb8;
+  --safe-soft: #12372f;
+  --warn: #f0b24a;
+  --warn-soft: #3a2a0c;
+  --bad: #ff8a80;
+  --bad-soft: #43171a;
+  --focus: #8da0ff;
+  --grid-head: #1c2740;
+  --grid-gutter: #131b2b;
+  --grid-line: #232f47;
+  --console-bg: #0a101b;
+  --console-ink: #c7d1e2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --canvas: #0d1320;
+    --surface: #151d2d;
+    --sunken: #111827;
+    --ink: #e7ecf4;
+    --muted: #9aa6b8;
+    --faint: #6f7b8f;
+    --line: #26324a;
+    --line-strong: #364563;
+    --brand: #e7ecf4;
+    --brand-ink: #101826;
+    --mask: #f06bb4;
+    --mask-soft: #3b1630;
+    --mask-ink: #f9a6d2;
+    --safe: #3ecdb8;
+    --safe-soft: #12372f;
+    --warn: #f0b24a;
+    --warn-soft: #3a2a0c;
+    --bad: #ff8a80;
+    --bad-soft: #43171a;
+    --focus: #8da0ff;
+    --grid-head: #1c2740;
+    --grid-gutter: #131b2b;
+    --grid-line: #232f47;
+    --console-bg: #0a101b;
+    --console-ink: #c7d1e2;
+  }
+}
+
+@theme inline {
+  --font-sans: 'Schibsted Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Spline Sans Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-mask: var(--mask);
+  --color-mask-soft: var(--mask-soft);
+  --color-mask-ink: var(--mask-ink);
+  --color-safe: var(--safe);
+  --color-safe-soft: var(--safe-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-grid-head: var(--grid-head);
+  --color-grid-gutter: var(--grid-gutter);
+  --color-grid-line: var(--grid-line);
+  --color-console: var(--console-bg);
+  --color-console-ink: var(--console-ink);
+}
+
+html {
+  background: var(--canvas);
+  color-scheme: light dark;
+}
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--mask-soft);
+  color: var(--mask-ink);
+}
+
+/* ---------- the spreadsheet ---------- */
+.sheet {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.sheet th,
+.sheet td {
+  border-right: 1px solid var(--grid-line);
+  border-bottom: 1px solid var(--grid-line);
+  padding: 0 10px;
+  height: 28px;
+  white-space: nowrap;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sheet td {
+  background: var(--surface);
+}
+.sheet td.num {
+  text-align: right;
+}
+.sheet .letters th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--grid-head);
+  color: var(--faint);
+  font-weight: 500;
+  font-size: 11px;
+  height: 22px;
+  text-align: center;
+}
+.sheet .names th {
+  position: sticky;
+  top: 22px;
+  z-index: 3;
+  background: var(--grid-head);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+  height: 34px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.sheet .gutter {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--grid-gutter);
+  color: var(--faint);
+  text-align: right;
+  font-size: 11px;
+  width: 44px;
+  min-width: 44px;
+}
+.sheet thead .gutter {
+  z-index: 4;
+}
+.sheet td.changed {
+  background: var(--mask-soft);
+  color: var(--mask-ink);
+}
+.sheet td.sel {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+.sheet tbody tr:hover td:not(.changed):not(.gutter) {
+  background: var(--sunken);
+}
+
+/* The one moving thing on the page: a scan line over the grid while a run is in progress. */
+@keyframes scan {
+  from {
+    transform: translateY(-10%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+.scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 56px;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--mask) 28%, transparent) 70%, var(--mask) 100%);
+  border-bottom: 2px solid var(--mask);
+  pointer-events: none;
+  z-index: 6;
+  animation: scan 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after {
+    animation: none;
+    opacity: 0.5;
+    height: 100%;
+    background: color-mix(in srgb, var(--mask) 10%, transparent);
+    border: 0;
+  }
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.log-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

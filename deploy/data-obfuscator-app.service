@@ -1,0 +1,42 @@
+# /etc/systemd/system/data-obfuscator-app.service
+[Unit]
+Description=Data Obfuscator web app
+After=network.target
+
+[Service]
+Type=simple
+User=obfuscator
+Group=obfuscator
+WorkingDirectory=/opt/data-obfuscator-app
+EnvironmentFile=-/opt/data-obfuscator-app/.env
+Environment=NODE_ENV=production
+ExecStart=/opt/data-obfuscator-app/node_modules/.bin/tsx server/index.ts
+Restart=on-failure
+RestartSec=3
+
+# Uploaded datasets are written here and deleted after JOB_TTL_MINUTES.
+StateDirectory=data-obfuscator-app
+Environment=JOBS_DIR=/var/lib/data-obfuscator-app/jobs
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictNamespaces=true
+LockPersonality=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+UMask=0077
+# The program is small; these stop one bad upload from starving the machine.
+MemoryMax=1G
+TasksMax=128
+
+[Install]
+WantedBy=multi-user.target

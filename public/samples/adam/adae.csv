@@ -1,0 +1,10 @@
+STUDYID,USUBJID,AEDECOD,AETERM,ASTDT,AENDT,AESEV,ARM
+XYZ-201,XYZ-201-0101-2001,DIZZINESS,"dizzy when standing, reported by phone",2025-02-13,2025-02-17,MILD,Drug 25 mg
+XYZ-201,XYZ-201-0102-2002,HEADACHE,headache after lunch at the hospital cafeteria,2025-02-10,2025-02-11,MILD,Drug 75 mg
+XYZ-201,XYZ-201-0102-2005,NAUSEA,mild nausea on the morning of the second dose,2025-02-10,2025-02-13,MILD,Drug 75 mg
+XYZ-201,XYZ-201-0101-2007,HEADACHE,headache after lunch at the hospital cafeteria,2025-02-08,2025-02-09,MILD,Drug 25 mg
+XYZ-201,XYZ-201-0102-2011,HEADACHE,headache after lunch at the hospital cafeteria,2025-02-17,2025-02-19,MILD,Drug 75 mg
+XYZ-201,XYZ-201-0310-2012,NAUSEA,mild nausea on the morning of the second dose,2025-02-08,2025-02-11,MODERATE,Placebo
+XYZ-201,XYZ-201-0101-2013,HEADACHE,headache after lunch at the hospital cafeteria,2025-02-15,2025-02-17,MODERATE,Drug 25 mg
+XYZ-201,XYZ-201-0310-2015,HEADACHE,headache after lunch at the hospital cafeteria,2025-02-05,2025-02-07,MILD,Placebo
+XYZ-201,XYZ-201-0102-2017,NAUSEA,mild nausea on the morning of the second dose,2025-02-16,2025-02-19,MILD,Drug 75 mg

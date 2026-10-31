@@ -1,0 +1,13 @@
+import { readFileSync } from 'node:fs';
+import { simulate } from '../src/shared/mockEngine.ts';
+import { defaultOptions } from '../src/shared/options.ts';
+import { parseDelimited } from '../src/shared/csv.ts';
+const text = readFileSync('./public/samples/sample.csv','utf8');
+const t = parseDelimited(text);
+const o = defaultOptions(t.headers); o.level = 3; o.seed = 7; o.renameMode='selected'; o.columns.WT.renameFlag=true; o.columns.AGE.renameFlag=true; o.columns.AGE.newName='X_AGE';
+const r = await simulate({fileName:'sample.csv', text, options:o}, (e)=>{ if(e.type==='log'||e.type==='step') console.log(e.type==='log'?e.text:'STEP '+e.step); }, {speed:0});
+console.log(r?.files.map(f=>f.name+':'+f.size));
+const f = (n:string)=>r!.files.find(x=>x.name===n)!.text!;
+console.log(f('obfuscated.csv').split('\n').slice(0,3).join('\n'));
+console.log(f('keymap.txt').split('\n').slice(0,60).join('\n'));
+console.log(f('summary.txt'));
